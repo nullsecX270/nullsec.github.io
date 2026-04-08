@@ -15,7 +15,7 @@ if [[ ! -e "$target" ]]; then
 fi
 
 matches="$(
-  grep -RhoE --binary-files=without-match "[[:alpha:]][[:alnum:]+.-]*://" "$target" 2>/dev/null || true
+  grep -RhoE --binary-files=without-match "[A-Za-z][A-Za-z0-9+.-]*://" "$target" 2>/dev/null || true
 )"
 
 if [[ -z "$matches" ]]; then
@@ -24,6 +24,6 @@ if [[ -z "$matches" ]]; then
 fi
 
 printf "%s\n" "$matches" \
-  | sed -E 's#://##' \
+  | sed -E 's|://||' \
   | tr '[:upper:]' '[:lower:]' \
   | sort -u
