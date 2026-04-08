@@ -24,6 +24,6 @@ if [[ -z "$matches" ]]; then
 fi
 
 printf "%s\n" "$matches" \
-  | sed -E 's#://$##' \
+  | sed -E 's#://##' \
   | tr '[:upper:]' '[:lower:]' \
   | sort -u
